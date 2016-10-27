@@ -24,6 +24,7 @@ import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.samples.persistence.DAOPaciente;
 import java.util.List;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.PacienteMapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -31,6 +32,7 @@ import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.PacienteMapper;
  */
 public class MyBatisDaoPaciente implements DAOPaciente{
 
+    private SqlSession currentSession=null;
     
     private PacienteMapper pmap=null;
 
@@ -40,7 +42,9 @@ public class MyBatisDaoPaciente implements DAOPaciente{
 
     @Override
     public List<Paciente> loadTopNPatientsInAYear(int N, int year) {
-        throw new UnsupportedOperationException("No se ha implementado: loadTopNPatientsInAYear(int N, int year) en MyBatisDAOPaciente."); //To change body of generated methods, choose Tools | Templates.
+     
+        return pmap.getConsulta(N,year);
+
     }
 
     

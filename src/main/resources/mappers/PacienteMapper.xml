@@ -10,9 +10,28 @@
         <id property='tipo_id' column='tipo_id'/>
         <result property='fechaNacimiento' column='fecha_nacimiento'/>
         <result property='nombre' column='nombre'/>
+        <collection property='consultas' ofType='Consulta' resultMap='ConsultaResult' ></collection> 
+        
+    </resultMap>
+    
+    
+    <resultMap type='Consulta' id='ConsultaResult'>
+        <id property='id' column='idCONSULTAS'/>        
+        <result property='fechayHora' column='fecha_y_hora'/>
+        <result property='resumen' column='resumen'/>
         
         
     </resultMap>
     
+    
+    
+    <select parameterType="map" id="getConsulta" resultMap="PacienteResult">
+        
+        select  pc.id, pc.tipo_id, pc.nombre, pc.fecha_nacimiento, cn.fecha_y_hora, cn.resumen, (select count(*) from CONSULTAS where PACIENTES_id=pc.id) as cantidad
+        from PACIENTES as pc
+        left join CONSULTAS as cn on PACIENTES_id=id and PACIENTES_tipo_id = tipo_id 
+        where year(pc.fecha_nacimiento)=#{year}
+        order by #{n} desc 
+    </select>
   	
 </mapper>

@@ -16,10 +16,66 @@
  */
 package edu.eci.pdsw.samples.managedbeans;
 
+
+import edu.eci.pdsw.samples.entities.Paciente;
+import edu.eci.pdsw.samples.services.ServiceFacadeException;
+import edu.eci.pdsw.samples.services.ServicesFacade;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 /**
  *
  * @author hcadavid
  */
+@ManagedBean(name="beanReporteRankingPacientes")
+
+@SessionScoped
 public class ReporteRankingPacientesBean {
+    
+    
+    
+    static ServicesFacade sf= ServicesFacade.getInstance("h2-applicationconfig.properties");
+    private int num=0;
+    private int year=0;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+    
+    
+    
+    
+    public List<Paciente> getSf() throws ServiceFacadeException{
+        return sf.topNPacientesPorAnyo(num,year);
+    }
+    
+    public void setSf(ServicesFacade sf){
+        
+
+    }
+    
+    public void execute() throws ServiceFacadeException {
+        
+        sf.topNPacientesPorAnyo(num,year);
+        
+        
+    }
+    
+    public ReporteRankingPacientesBean(){}
     
 }

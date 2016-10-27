@@ -1,16 +1,41 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <title>Reportes de comentarios negativos</title>
-    </h:head>
+    <h:head></h:head>
+
     <h:body>
-        <h1>Reportes de comentarios negativos</h1>
-        <h:form>
+    <h:form id="Ranking">
+        Ranking de pacientes con mas consultas
+        <p:dataTable var="consul" value="#{beanReporteRankingPacientes.sf}">
+        
+        <p:column headerText="nombre del paciente">
+            <h:outputText value="#{consul.nombre}" />
+                    </p:column>
+        <p:column headerText="Tipo de TI">
+            <h:outputText value="#{consul.tipo_id}" />
+                    </p:column>
+        <p:column headerText="Cedula">
+            <h:outputText value="#{consul.id}" />
+                    </p:column>
+        <p:column headerText="Numero de consultas">
+            <h:outputText value="#{consul.consultas.size}" />
+                    </p:column>
 
-        </h:form>
-    </h:body>
+    </p:dataTable>
+        
+        
+        Digite ranking
+        <p:inputText value="#{beanReporteRankingPacientes.num}"></p:inputText>
+        Digite año reporte
+        <p:inputText value="#{beanReporteRankingPacientes.year}"></p:inputText>
+        <p:commandButton value="Submit" update="Ranking" actionListener="#{beanReporteRankingPacientes.execute}"></p:commandButton>
+        
+        
+     
+    
+    </h:form>
+ </h:body>
+
+
 </html>
-
