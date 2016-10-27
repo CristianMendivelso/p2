@@ -12,14 +12,11 @@
         <p:column headerText="nombre del paciente">
             <h:outputText value="#{consul.nombre}" />
                     </p:column>
-        <p:column headerText="Tipo de TI">
-            <h:outputText value="#{consul.tipo_id}" />
-                    </p:column>
         <p:column headerText="Cedula">
             <h:outputText value="#{consul.id}" />
                     </p:column>
         <p:column headerText="Numero de consultas">
-            <h:outputText value="#{consul.consultas.size}" />
+            <h:outputText value="#{consul.cantidadconsultas}" />
                     </p:column>
 
     </p:dataTable>
@@ -28,7 +25,7 @@
         Digite ranking
         <p:inputText value="#{beanReporteRankingPacientes.num}"></p:inputText>
         Digite año reporte
-        <p:inputText value="#{beanReporteRankingPacientes.year}"></p:inputText>
+        <p:spinner id="basic" value="#{beanReporteRankingPacientes.year}" min="2006" max="2016"/>
         <p:commandButton value="Submit" update="Ranking" actionListener="#{beanReporteRankingPacientes.execute}"></p:commandButton>
         
         

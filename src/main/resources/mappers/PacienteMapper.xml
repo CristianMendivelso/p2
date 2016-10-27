@@ -10,6 +10,7 @@
         <id property='tipo_id' column='tipo_id'/>
         <result property='fechaNacimiento' column='fecha_nacimiento'/>
         <result property='nombre' column='nombre'/>
+        <result property='cantidadconsultas' column='cant'/>
         <collection property='consultas' ofType='Consulta' resultMap='ConsultaResult' ></collection> 
         
     </resultMap>
@@ -27,11 +28,14 @@
     
     <select parameterType="map" id="getConsulta" resultMap="PacienteResult">
         
-        select  pc.id, pc.tipo_id, pc.nombre, pc.fecha_nacimiento, cn.fecha_y_hora, cn.resumen, (select count(*) from CONSULTAS where PACIENTES_id=pc.id) as cantidad
+        
+        select  pc.id, pc.tipo_id, pc.nombre, pc.fecha_nacimiento, cn.fecha_y_hora, cn.resumen, (select count(*) from CONSULTAS where PACIENTES_id=pc.id) as cant
         from PACIENTES as pc
         left join CONSULTAS as cn on PACIENTES_id=id and PACIENTES_tipo_id = tipo_id 
-        where year(pc.fecha_nacimiento)=#{year}
-        order by #{n} desc 
+        where year(cn.fecha_y_hora)=#{year}
+        group by pc.id 
+        order by 7 desc
+        
     </select>
   	
 </mapper>

@@ -37,9 +37,10 @@ public class ReporteRankingPacientesBean {
     
     
     
-    static ServicesFacade sf= ServicesFacade.getInstance("h2-applicationconfig.properties");
+    static ServicesFacade sf= ServicesFacade.getInstance("applicationconfig.properties");
     private int num=0;
     private int year=0;
+    
 
     public int getNum() {
         return num;

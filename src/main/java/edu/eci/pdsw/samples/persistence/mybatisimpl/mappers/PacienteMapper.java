@@ -26,6 +26,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface PacienteMapper {
 
-    public List<Paciente> getConsulta(@Param ("n")int N,@Param ("year")int year); 
+    public List<Paciente> getConsulta(@Param ("year")int year); 
     
 }

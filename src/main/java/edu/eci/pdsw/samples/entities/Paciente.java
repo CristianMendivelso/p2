@@ -31,6 +31,15 @@ public class Paciente {
     private String nombre;
     private Date fechaNacimiento;
     Set<Consulta> consultas;
+    private int cantidadconsultas;
+
+    public int getCantidadconsultas() {
+        return cantidadconsultas;
+    }
+
+    public void setCantidadconsultas(int cantidadconsultas) {
+        this.cantidadconsultas = cantidadconsultas;
+    }
     
 
     public Paciente(int id, String tipo_id, String nombre, Date fechaNacimiento) {

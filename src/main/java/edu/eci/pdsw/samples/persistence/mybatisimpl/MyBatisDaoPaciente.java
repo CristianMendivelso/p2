@@ -24,6 +24,8 @@ import org.apache.ibatis.session.SqlSession;
 import edu.eci.pdsw.samples.persistence.DAOPaciente;
 import java.util.List;
 import edu.eci.pdsw.samples.persistence.mybatisimpl.mappers.PacienteMapper;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -43,9 +45,17 @@ public class MyBatisDaoPaciente implements DAOPaciente{
     @Override
     public List<Paciente> loadTopNPatientsInAYear(int N, int year) {
      
-        return pmap.getConsulta(N,year);
-
+        List<Paciente> temp= pmap.getConsulta(year);
+        List<Paciente> temp2= new ArrayList<Paciente>();
+        if (N<=temp.size()){
+        for (int i=0;i<N;i++){
+            temp2.add(temp.get(i));
+        }
+        return temp2;
+        }
+        else {return temp;}
     }
+    
 
     
     
